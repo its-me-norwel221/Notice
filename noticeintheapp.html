@@ -9,55 +9,16 @@
 html,body{margin:0;height:100%;overflow:hidden}
 body{background:#1e293b;color:#e2e8f0;font-family:system-ui,-apple-system,sans-serif;display:flex;align-items:center;justify-content:center;padding:12px}
 .box{text-align:center;max-width:100%}
-h2{margin:0 0 8px;font-size:17px;font-weight:700}
+h2{margin:0 0 8px;font-size:17px;font-weight:700;color:#fbbf24}
 p{margin:0 0 10px;font-size:14px;line-height:1.45;color:#94a3b8}
 a{display:inline-block;padding:8px 16px;border-radius:8px;background:#0ea5e9;color:#fff;font-size:14px;font-weight:600;text-decoration:none}
-.ok h2{color:#6ee7b7}
-.new h2{color:#fbbf24}
-.hidden{display:none}
 </style>
 </head>
 <body>
-<div class="box" id="box">
-  <h2 id="title"></h2>
-  <p id="text"></p>
-  <a id="link" class="hidden" href="https://its-me-norwel221.github.io/Shelfapk/website.html" target="_blank" rel="noopener">Click here to update</a>
+<div class="box">
+  <h2>New version is available</h2>
+  <p>Click to download below. If you already downloaded this version, please ignore this message. Thank you.</p>
+  <a href="https://its-me-norwel221.github.io/Shelfapk/website.html" target="_blank" rel="noopener">Click here to update</a>
 </div>
-
-<script>
-// Set this to the newest version you released
-const LATEST_VERSION = '2';
-
-function showStatus(installed){
-  const box = document.getElementById('box');
-  const title = document.getElementById('title');
-  const text = document.getElementById('text');
-  const link = document.getElementById('link');
-
-  if (!installed || installed === 'none') {
-    title.textContent = '';
-    text.textContent = '';
-    link.classList.add('hidden');
-    return;
-  }
-
-  if (String(installed) === LATEST_VERSION) {
-    box.className = 'box ok';
-    title.textContent = "You're up to date";
-    text.textContent = 'Version ' + LATEST_VERSION + ' is installed. No update needed.';
-    link.classList.add('hidden');
-  } else {
-    box.className = 'box new';
-    title.textContent = 'New update available';
-    text.textContent = 'You have version ' + installed + '. Version ' + LATEST_VERSION + ' is ready.';
-    link.classList.remove('hidden');
-  }
-}
-
-// The launcher sends the installed version after this page loads
-window.addEventListener('message', e => {
-  if (e.data && e.data.type === 'installed-version') showStatus(e.data.version);
-});
-</script>
 </body>
 </html>
